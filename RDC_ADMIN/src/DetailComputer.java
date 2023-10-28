@@ -15,13 +15,13 @@ public class DetailComputer extends JFrame implements ActionListener {
     private String state = "";
     private List<List<String>> apps = new ArrayList<>();
 
-    public DetailComputer(String s, List<List<String>> apps)  {
+    public DetailComputer(String s, List<List<String>> apps, String name)  {
         super(s);
         for (int i = 0; i < apps.size(); i++) {
             List<String> app = apps.get(i);
             this.apps.add(Arrays.asList(app.get(0), app.get(1)));
         }
-        comp="IDCOMP";
+        comp=name;
         state="ONLINE";
         GUI();
 

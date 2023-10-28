@@ -70,6 +70,9 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
             btnList2.get(i).setBounds(50+80*i,430,70,70);
             btnList2.get(i).setBackground(Color.YELLOW);
+
+            btnList1.get(i).addActionListener(this);
+            btnList2.get(i).addActionListener(this);
             pn.add(btnList1.get(i));
             pn.add(btnList2.get(i));
         }
@@ -111,7 +114,7 @@ public class RemoteControlView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btnList1.get(0)){
-            DetailComputer detail = new DetailComputer("Detail Computer", apps);
+            DetailComputer detail = new DetailComputer("Detail Computer", apps, btnList1.get(0).getText());
 
         }
     }
