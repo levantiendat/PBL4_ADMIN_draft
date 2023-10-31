@@ -31,27 +31,22 @@ public class DetailHistory extends JFrame implements ActionListener {
             System.out.println("Error!");
             client.Shutdown();
         }
-
-        GUI();
     }
-    public void GetData(){
-        try{
-            String option1 = "/AppHistory";
-            client.writeMes(option1);
-            client.writeMes(comp);
-            int n1 = Integer.parseInt(client.readMes());
-            apps = new ArrayList<>();
-            for(int i = 0; i < n1; i++){
-                String appName = client.readMes();
-                String timeID = client.readMes();
-                if(timeID.equals(date)){
-                    apps.add(Arrays.asList(appName, timeID));
-                }
+    public void GetData() throws Exception{
 
+        String option1 = "/AppHistory";
+        client.writeMes(option1);
+        client.writeMes(comp);
+        int n1 = Integer.parseInt(client.readMes());
+        apps = new ArrayList<>();
+        for(int i = 0; i < n1; i++){
+            String appName = client.readMes();
+            String timeID = client.readMes();
+            if(timeID.equals(date)){
+                apps.add(Arrays.asList(appName, timeID));
             }
-        } catch(Exception e){
-
         }
+        GUI();
     }
     public void GUI() {
         setDefaultCloseOperation(3);

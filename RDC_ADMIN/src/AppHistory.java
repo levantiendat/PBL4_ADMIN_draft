@@ -27,30 +27,27 @@ public class AppHistory extends JFrame implements ActionListener {
             client.Init();
             client.Connect();
             GetData();
-            ProcessData();
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error!");
             client.Shutdown();
         }
-
-        GUI();
     }
-    public void GetData(){
-        try{
-            String option1 = "/AppHistory";
-            client.writeMes(option1);
-            client.writeMes(comp);
-            int n1 = Integer.parseInt(client.readMes());
-            apps = new ArrayList<>();
-            for(int i = 0; i < n1; i++){
-                String appName = client.readMes();
-                String timeID = client.readMes();
-                apps.add(Arrays.asList(appName, timeID));
-            }
-        } catch(Exception e){
-
+    public void GetData() throws Exception{
+        String option1 = "/AppHistory";
+        client.writeMes(option1);
+        client.writeMes(comp);
+        int n1 = Integer.parseInt(client.readMes());
+        apps = new ArrayList<>();
+        for(int i = 0; i < n1; i++){
+            String appName = client.readMes();
+            String timeID = client.readMes();
+            apps.add(Arrays.asList(appName, timeID));
         }
+        ProcessData();
+        GUI();
+
     }
     public void ProcessData(){
         for(int i = 0;i<apps.size();i++){
