@@ -44,6 +44,7 @@ public class AppHistory extends JFrame implements ActionListener {
             String appName = client.readMes();
             String timeID = client.readMes();
             apps.add(Arrays.asList(appName, timeID));
+            System.out.println(i + appName);
         }
         for(int i = 0;i<apps.size();i++){
             int check = 0;
