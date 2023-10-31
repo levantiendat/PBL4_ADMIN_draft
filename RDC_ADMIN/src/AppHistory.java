@@ -22,6 +22,7 @@ public class AppHistory extends JFrame implements ActionListener {
     private String comp;
     public AppHistory(String s, String comp)  {
         super(s);
+        this.comp = comp;
         try {
             client.Init();
             client.Connect();
@@ -32,7 +33,7 @@ public class AppHistory extends JFrame implements ActionListener {
             System.out.println("Error!");
             client.Shutdown();
         }
-        this.comp = comp;
+
         GUI();
     }
     public void GetData(){

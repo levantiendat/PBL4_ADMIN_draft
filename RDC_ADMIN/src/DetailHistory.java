@@ -19,6 +19,9 @@ public class DetailHistory extends JFrame implements ActionListener {
     private ClientAdmin client = new ClientAdmin();
     public DetailHistory(String s, String date, String state, String comp)  {
         super(s);
+        this.comp = comp;
+        this.date = date;
+        this.state = state;
         try {
             client.Init();
             client.Connect();
@@ -28,9 +31,7 @@ public class DetailHistory extends JFrame implements ActionListener {
             System.out.println("Error!");
             client.Shutdown();
         }
-        this.comp = comp;
-        this.date = date;
-        this.state = state;
+
         GUI();
     }
     public void GetData(){
