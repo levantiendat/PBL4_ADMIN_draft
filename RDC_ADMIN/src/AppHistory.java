@@ -45,11 +45,6 @@ public class AppHistory extends JFrame implements ActionListener {
             String timeID = client.readMes();
             apps.add(Arrays.asList(appName, timeID));
         }
-        ProcessData();
-        GUI();
-
-    }
-    public void ProcessData(){
         for(int i = 0;i<apps.size();i++){
             int check = 0;
             for(List<Object> row: data){
@@ -69,8 +64,10 @@ public class AppHistory extends JFrame implements ActionListener {
                 data.add(row);
             }
         }
+        GUI();
+
     }
-    public void GUI() {
+    public void GUI() throws Exception {
         setDefaultCloseOperation(3);
         setLocationRelativeTo(null);
         setResizable(false);
