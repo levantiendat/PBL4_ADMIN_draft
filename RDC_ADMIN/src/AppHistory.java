@@ -133,10 +133,7 @@ public class AppHistory extends JFrame implements ActionListener {
                 if (selectedColumn > 0) {
                     String selectedDate = (String) table.getValueAt(selectedRow, 0);
                     String selectedColumnName = table.getColumnName(selectedColumn);
-                    List<String> list = new ArrayList<>();
-                    for(int i = 0; i< apps.size();i++){
-                        if(apps.get(i).get(1).equals(selectedDate)) list.add(apps.get(i).get(0));
-                    }
+
                     DetailHistory detailHistory =new DetailHistory("Detail History", selectedDate, selectedColumnName, comp);
                 }
             }
