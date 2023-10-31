@@ -15,7 +15,7 @@ public class DetailHistory extends JFrame implements ActionListener {
     private JTable table;
     private JScrollPane scrollPane;
     private String date,state,  comp;
-    private List<String> apps = new ArrayList<>();
+    private List<List<String>> apps = new ArrayList<>();
     private ClientAdmin client = new ClientAdmin();
     public DetailHistory(String s, String date, String state, String comp)  {
         super(s);
@@ -39,11 +39,14 @@ public class DetailHistory extends JFrame implements ActionListener {
             client.writeMes(option1);
             client.writeMes(comp);
             int n1 = Integer.parseInt(client.readMes());
-            List<List<String>> apps = new ArrayList<>();
+            apps = new ArrayList<>();
             for(int i = 0; i < n1; i++){
                 String appName = client.readMes();
                 String timeID = client.readMes();
-                apps.add(Arrays.asList(appName, timeID));
+                if(timeID.equals(date)){
+                    apps.add(Arrays.asList(appName, timeID));
+                }
+
             }
         } catch(Exception e){
 
@@ -70,8 +73,8 @@ public class DetailHistory extends JFrame implements ActionListener {
         Object[][] data = new Object[apps.size()][];
         for(int i = 0;i< apps.size();i++){
             List<String> row = new ArrayList<>();
-            row.add(date);
-            row.add(apps.get(i));
+            row.add(apps.get(i).get(1));
+            row.add(apps.get(i).get(0));
             data[i] = row.toArray();
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);

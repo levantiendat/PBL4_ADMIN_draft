@@ -41,7 +41,7 @@ public class AppHistory extends JFrame implements ActionListener {
             client.writeMes(option1);
             client.writeMes(comp);
             int n1 = Integer.parseInt(client.readMes());
-            List<List<String>> apps = new ArrayList<>();
+            apps = new ArrayList<>();
             for(int i = 0; i < n1; i++){
                 String appName = client.readMes();
                 String timeID = client.readMes();
