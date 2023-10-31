@@ -18,14 +18,38 @@ public class AppHistory extends JFrame implements ActionListener {
     private JScrollPane scrollPane;
     private List<List<String>> apps = new ArrayList<>();
     private List<List<Object>> data = new ArrayList<>();
-    public AppHistory(String s, List<List<String>> apps)  {
+    private ClientAdmin client = new ClientAdmin();
+    private String comp;
+    public AppHistory(String s, String comp)  {
         super(s);
-        for (int i = 0; i < apps.size(); i++) {
-            List<String> app = apps.get(i);
-            this.apps.add(Arrays.asList(app.get(0), app.get(1)));
+        try {
+            client.Init();
+            client.Connect();
+            GetData();
+            ProcessData();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error!");
+            client.Shutdown();
         }
-
+        this.comp = comp;
         GUI();
+    }
+    public void GetData(){
+        try{
+            String option1 = "/AppHistory";
+            client.writeMes(option1);
+            client.writeMes(comp);
+            int n1 = Integer.parseInt(client.readMes());
+            List<List<String>> apps = new ArrayList<>();
+            for(int i = 0; i < n1; i++){
+                String appName = client.readMes();
+                String timeID = client.readMes();
+                apps.add(Arrays.asList(appName, timeID));
+            }
+        } catch(Exception e){
+
+        }
     }
     public void ProcessData(){
         for(int i = 0;i<apps.size();i++){
@@ -63,8 +87,6 @@ public class AppHistory extends JFrame implements ActionListener {
         lb1 = new JLabel("COMPUTER APP HISTORY");
         lb1.setForeground(Color.WHITE);
         lb1.setFont(new Font("Arial", Font.BOLD, 20));
-
-        ProcessData();
         String[] columnNames = {"Time", "Not Allow", "All"};
         Object[][] data001 = new Object[data.size()][];
         for (int i = 0; i < data.size(); i++) {
@@ -115,7 +137,7 @@ public class AppHistory extends JFrame implements ActionListener {
                     for(int i = 0; i< apps.size();i++){
                         if(apps.get(i).get(1).equals(selectedDate)) list.add(apps.get(i).get(0));
                     }
-                    DetailHistory detailHistory =new DetailHistory("Detail History", selectedDate, selectedColumnName, list);
+                    DetailHistory detailHistory =new DetailHistory("Detail History", selectedDate, selectedColumnName, comp);
                 }
             }
         });
