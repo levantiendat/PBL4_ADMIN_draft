@@ -141,13 +141,13 @@ public class RemoteControlView extends JFrame implements ActionListener {
         for(int i = 0;i<onlineComps.size();i++){
             if(e.getSource()==btnList1.get(i)){
                 new DetailComputer("Detail Computer", btnList1.get(i).getText(),"ONLINE");
-
+                dispose();
             }
         }
         for(int i = 0;i<offlineComps.size();i++){
             if(e.getSource()==btnList2.get(i)){
                 new DetailComputer("Detail Computer", btnList2.get(i).getText(),"OFFLINE");
-
+                dispose();
             }
         }
 

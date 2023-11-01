@@ -14,17 +14,19 @@ public class DetailHistory extends JFrame implements ActionListener {
     private JPanel pn;
     private JTable table;
     private JScrollPane scrollPane;
-    private String date,  comp;
+    private String date,  comp, compstate;
     private int state;
     private List<List<String>> apps = new ArrayList<>();
     private List<List<String>> finalList = new ArrayList<>();
     private List<String> notAllowApps = new ArrayList<>();
+    private JButton btnBack;
     private ClientAdmin client = new ClientAdmin();
-    public DetailHistory(String s, String date, int state, String comp)  {
+    public DetailHistory(String s, String date, int state, String comp, String compstate)  {
         super(s);
         this.comp = comp;
         this.date = date;
         this.state = state;
+        this.compstate = compstate;
         try {
             client.Init();
             client.Connect();
@@ -103,13 +105,13 @@ public class DetailHistory extends JFrame implements ActionListener {
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         table = new JTable(model);
-        table.setFont(new Font("Arial", Font.PLAIN, 16));
+        table.setFont(new Font("Arial", Font.PLAIN, 14));
 
         TableCellRenderer cellRenderer = new TableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 JLabel label = new JLabel(value.toString());
-                label.setFont(new Font("Arial", Font.PLAIN, 16));
+                label.setFont(new Font("Arial", Font.PLAIN, 14));
                 label.setPreferredSize(new Dimension(0, 100));
                 label.setVerticalAlignment(SwingConstants.TOP);
                 return label;
@@ -117,13 +119,18 @@ public class DetailHistory extends JFrame implements ActionListener {
         };
 
         table.setDefaultRenderer(Object.class, cellRenderer);
-
+        btnBack=new JButton("BACK");
+        btnBack.setFont(new Font("Arial",Font.BOLD,16));
+        btnBack.setBackground(Color.white);
+        btnBack.setForeground(Color.black);
+        btnBack.addActionListener(this);
         scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(800, 400));
+        scrollPane.setPreferredSize(new Dimension(800, 350));
+        btnBack.setBounds(770,500,200,60);
 
         table.setFillsViewportHeight(true);
 
-        scrollPane.setBounds(50, 120, 800, 400);
+        scrollPane.setBounds(50, 120, 800, 350);
         lb1.setBounds(50, 50, 400, 50);
 
         pn.add(lb1);
@@ -139,6 +146,9 @@ public class DetailHistory extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource()==btnBack){
+            new AppHistory("Detail computer", comp, compstate);
+            dispose();
+        }
     }
 }

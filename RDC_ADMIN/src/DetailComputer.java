@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DetailComputer extends JFrame implements ActionListener {
     private JLabel lb1,lb2,lb3,lb4,lb5,lb6;
-    private JButton btnRemote, btnHistory;
+    private JButton btnRemote, btnHistory,btnBack;
     private JPanel pn;
     private String comp ="";
     private String state = "";
@@ -73,6 +73,11 @@ public class DetailComputer extends JFrame implements ActionListener {
         btnHistory.setBackground(Color.white);
         btnHistory.setForeground(Color.black);
 
+        btnBack=new JButton("CHOOSE ANOTHER COMPUTER");
+        btnBack.setFont(new Font("Arial",Font.BOLD,16));
+        btnBack.setBackground(Color.white);
+        btnBack.setForeground(Color.black);
+
         lb1.setBounds(50,50,400, 50);
         lb2.setBounds(50, 120, 400, 30);
         lb3.setBounds(50,150,400,30);
@@ -80,9 +85,10 @@ public class DetailComputer extends JFrame implements ActionListener {
         lb5.setBounds(50,250,400,30);
         lb6.setBounds(50,280,400,30);
 
-
+        btnBack.setBounds(330,500,200,60);
         btnRemote.setBounds(550,500,200,60);
         btnHistory.setBounds(770,500,200,60);
+        btnBack.addActionListener(this);
         btnRemote.addActionListener(this);
         btnHistory.addActionListener(this);
         pn=new JPanel(null);
@@ -95,7 +101,7 @@ public class DetailComputer extends JFrame implements ActionListener {
         pn.add(lb4);
         pn.add(lb5);
         pn.add(lb6);
-
+        pn.add(btnBack);
         pn.add(btnRemote);
         pn.add(btnHistory);
 
@@ -111,7 +117,12 @@ public class DetailComputer extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btnHistory){
-            AppHistory history = new AppHistory("AppHistory",comp);
+            new AppHistory("AppHistory",comp,state);
+            dispose();
+        }
+        if(e.getSource()==btnRemote){
+            new RemoteControlView("Remote control");
+            dispose();
         }
     }
 }
