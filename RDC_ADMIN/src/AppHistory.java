@@ -114,7 +114,7 @@ public class AppHistory extends JFrame implements ActionListener {
         table.setFillsViewportHeight(true);
 
         scrollPane.setBounds(50, 120, 800, 400);
-        lb1.setBounds(50, 50, 400, 50);
+        lb1.setBounds(50, 50, 600, 50);
 
         // Thêm ListSelectionListener để xử lý sự kiện khi người dùng chọn ô
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {

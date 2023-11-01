@@ -55,17 +55,13 @@ public class DetailComputer extends JFrame implements ActionListener {
         lb4.setForeground(Color.WHITE);
         lb4.setFont(new Font("Arial",Font.PLAIN,16));
 
-        lb5=new JLabel("Computer ID: "+comp);
+        lb5=new JLabel("Computer ID: "+ comp);
         lb5.setForeground(Color.WHITE);
         lb5.setFont(new Font("Arial",Font.PLAIN,16));
 
         lb6=new JLabel("IP ADDRESS: ");
         lb6.setForeground(Color.WHITE);
         lb6.setFont(new Font("Arial",Font.PLAIN,16));
-
-        lb7=new JLabel("CPU: |RAM: |DISK: ");
-        lb7.setForeground(Color.WHITE);
-        lb7.setFont(new Font("Arial",Font.PLAIN,16));
 
         btnRemote=new JButton("REMOTE CONTROL");
         btnRemote.setFont(new Font("Arial",Font.BOLD,16));
