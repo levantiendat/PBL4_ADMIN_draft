@@ -14,12 +14,13 @@ public class DetailHistory extends JFrame implements ActionListener {
     private JPanel pn;
     private JTable table;
     private JScrollPane scrollPane;
-    private String date,state,  comp;
+    private String date,  comp;
+    private int state;
     private List<List<String>> apps = new ArrayList<>();
     private List<List<String>> finalList = new ArrayList<>();
     private List<String> notAllowApps = new ArrayList<>();
     private ClientAdmin client = new ClientAdmin();
-    public DetailHistory(String s, String date, String state, String comp)  {
+    public DetailHistory(String s, String date, int state, String comp)  {
         super(s);
         this.comp = comp;
         this.date = date;
@@ -56,9 +57,9 @@ public class DetailHistory extends JFrame implements ActionListener {
             String appName = client.readMes();
             notAllowApps.add(appName);
         }
-        if(state.equals("Not Allow")){
-            for(int i = 0;i<apps.size();i++){
-                for(int j = 0;j<notAllowApps.size();j++){
+        if(state == 1){
+            for(int i = 0;i < apps.size();i++){
+                for(int j = 0;j < notAllowApps.size();j++){
                     if(apps.get(i).get(0).equals(notAllowApps.get(j))){
                         finalList.add(Arrays.asList(apps.get(i).get(0),apps.get(i).get(1)));
                         break;
