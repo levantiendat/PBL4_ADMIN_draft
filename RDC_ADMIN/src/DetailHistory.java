@@ -94,7 +94,7 @@ public class DetailHistory extends JFrame implements ActionListener {
 
         String[] columnNames = {"Time", "Log App"};
 
-        Object[][] data = new Object[apps.size()][];
+        Object[][] data = new Object[finalList.size()][];
         for(int i = 0;i< finalList.size();i++){
             List<String> row = new ArrayList<>();
             row.add(finalList.get(i).get(1));
