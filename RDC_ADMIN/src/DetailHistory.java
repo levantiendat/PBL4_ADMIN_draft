@@ -16,6 +16,8 @@ public class DetailHistory extends JFrame implements ActionListener {
     private JScrollPane scrollPane;
     private String date,state,  comp;
     private List<List<String>> apps = new ArrayList<>();
+    private List<List<String>> finalList = new ArrayList<>();
+    private List<String> notAllowApps = new ArrayList<>();
     private ClientAdmin client = new ClientAdmin();
     public DetailHistory(String s, String date, String state, String comp)  {
         super(s);
@@ -46,6 +48,31 @@ public class DetailHistory extends JFrame implements ActionListener {
                 apps.add(Arrays.asList(appName, timeID));
             }
         }
+
+        String option2 = "/NotAllowApp";
+        client.writeMes(option2);
+        int n = Integer.parseInt(client.readMes());
+        for(int i = 0;i < n;i++){
+            String appName = client.readMes();
+            notAllowApps.add(appName);
+        }
+        if(state.equals("Not Allow")){
+            for(int i = 0;i<apps.size();i++){
+                for(int j = 0;j<notAllowApps.size();j++){
+                    if(apps.get(i).get(0).equals(notAllowApps.get(j))){
+                        finalList.add(Arrays.asList(apps.get(i).get(0),apps.get(i).get(1)));
+                        break;
+                    }
+                }
+
+            }
+        }
+        else{
+            for(int i = 0;i<apps.size();i++){
+                finalList.add(Arrays.asList(apps.get(i).get(0),apps.get(i).get(1)));
+            }
+        }
+
         GUI();
     }
     public void GUI() {
@@ -67,10 +94,10 @@ public class DetailHistory extends JFrame implements ActionListener {
         String[] columnNames = {"Time", "Log App"};
 
         Object[][] data = new Object[apps.size()][];
-        for(int i = 0;i< apps.size();i++){
+        for(int i = 0;i< finalList.size();i++){
             List<String> row = new ArrayList<>();
-            row.add(apps.get(i).get(1));
-            row.add(apps.get(i).get(0));
+            row.add(finalList.get(i).get(1));
+            row.add(finalList.get(i).get(0));
             data[i] = row.toArray();
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);

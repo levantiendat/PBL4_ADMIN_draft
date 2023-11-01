@@ -18,6 +18,7 @@ public class AppHistory extends JFrame implements ActionListener {
     private JScrollPane scrollPane;
     private List<List<String>> apps = new ArrayList<>();
     private List<List<Object>> data = new ArrayList<>();
+    private List<String> notAllowApps = new ArrayList<>();
     private ClientAdmin client = new ClientAdmin();
     private String comp;
     public AppHistory(String s, String comp)  {
@@ -47,21 +48,42 @@ public class AppHistory extends JFrame implements ActionListener {
             apps.add(Arrays.asList(appName, timeID));
             System.out.println(i + appName);
         }
+        String option2 = "/NotAllowApp";
+        client.writeMes(option2);
+        int n = Integer.parseInt(client.readMes());
+        for(int i = 0;i < n;i++){
+            String appName = client.readMes();
+            notAllowApps.add(appName);
+        }
+
         for(int i = 0;i<apps.size();i++){
             int check = 0;
+
             for(List<Object> row: data){
                 String date = String.valueOf(row.get(0));
                 if(date.equals(apps.get(i).get(1))){
                     int count = (int) row.get(2) + 1;
                     row.set(2, count);
                     check = 1;
+                    for(int j = 0;j<notAllowApps.size();j++){
+                        if(apps.get(i).get(0).equals(notAllowApps.get(j))){
+                            row.set(1, (int) row.get(1) + 1);
+                        }
+                    }
                     break;
                 }
             }
             if(check == 0){
+                int notAllow = 0;
                 List<Object> row = new ArrayList<>();
                 row.add(apps.get(i).get(1));
-                row.add(0);
+                for(int j = 0;j<notAllowApps.size();j++){
+                    if(apps.get(i).get(0).equals(notAllowApps.get(j))){
+                        notAllow = 1;
+                        break;
+                    }
+                }
+                row.add(notAllow);
                 row.add(1);
                 data.add(row);
             }
