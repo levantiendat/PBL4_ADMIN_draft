@@ -46,7 +46,7 @@ public class AppHistory extends JFrame implements ActionListener {
             String appName = client.readMes();
             String timeID = client.readMes();
             apps.add(Arrays.asList(appName, timeID));
-            System.out.println(i + appName);
+
         }
         String option2 = "/NotAllowApp";
         client.writeMes(option2);
@@ -54,6 +54,7 @@ public class AppHistory extends JFrame implements ActionListener {
         for(int i = 0;i < n;i++){
             String appName = client.readMes();
             notAllowApps.add(appName);
+            System.out.println(i + appName);
         }
 
         for(int i = 0;i<apps.size();i++){
