@@ -17,7 +17,7 @@ public class DetailComputer extends JFrame implements ActionListener {
 
     public DetailComputer(String s, String name, String state)  {
         super(s);
-
+        this.comp=name;
         try {
             client.Init();
             client.Connect();
@@ -26,7 +26,7 @@ public class DetailComputer extends JFrame implements ActionListener {
             System.out.println("Error!");
             client.Shutdown();
         }
-        comp=name;
+
         this.state = state;
         GUI();
 

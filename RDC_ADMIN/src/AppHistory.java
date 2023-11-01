@@ -33,6 +33,7 @@ public class AppHistory extends JFrame implements ActionListener {
             System.out.println("Error!");
             client.Shutdown();
         }
+
     }
     public void GetData() throws Exception{
         String option1 = "/AppHistory";
@@ -80,7 +81,7 @@ public class AppHistory extends JFrame implements ActionListener {
         pn.setBounds(0, 0, 1000, 600);
         pn.setBackground(Color.BLACK);
 
-        lb1 = new JLabel("COMPUTER APP HISTORY");
+        lb1 = new JLabel("COMPUTER APP HISTORY FOR " + comp);
         lb1.setForeground(Color.WHITE);
         lb1.setFont(new Font("Arial", Font.BOLD, 20));
         String[] columnNames = {"Time", "Not Allow", "All"};
