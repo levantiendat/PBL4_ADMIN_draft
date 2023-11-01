@@ -120,9 +120,12 @@ public class DetailComputer extends JFrame implements ActionListener {
             new AppHistory("AppHistory",comp,state);
             dispose();
         }
-        if(e.getSource()==btnRemote){
+        if(e.getSource()==btnBack){
             new RemoteControlView("Remote control");
             dispose();
+        }
+        if(e.getSource()==btnRemote){
+
         }
     }
 }
