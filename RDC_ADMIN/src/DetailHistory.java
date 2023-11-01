@@ -135,6 +135,7 @@ public class DetailHistory extends JFrame implements ActionListener {
 
         pn.add(lb1);
         pn.add(scrollPane);
+        pn.add(btnBack);
 
         add(pn);
 

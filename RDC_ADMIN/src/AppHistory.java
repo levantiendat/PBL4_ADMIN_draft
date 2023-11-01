@@ -162,7 +162,8 @@ public class AppHistory extends JFrame implements ActionListener {
                     String selectedColumnName = table.getColumnName(selectedColumn);
                     System.out.println("Column id: "+ selectedColumn);
                     System.out.println("Column name: "+ selectedColumnName);
-                    DetailHistory detailHistory =new DetailHistory("Detail History", selectedDate, selectedColumn, comp, state);
+                    new DetailHistory("Detail History", selectedDate, selectedColumn, comp, state);
+                    dispose();
                 }
             }
         });
