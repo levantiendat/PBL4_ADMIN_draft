@@ -153,8 +153,9 @@ public class AppHistory extends JFrame implements ActionListener {
                 if (selectedColumn > 0) {
                     String selectedDate = (String) table.getValueAt(selectedRow, 0);
                     String selectedColumnName = table.getColumnName(selectedColumn);
-
-                    DetailHistory detailHistory =new DetailHistory("Detail History", selectedDate, selectedColumnName, comp);
+                    System.out.println("Column id: "+ selectedColumn);
+                    System.out.println("Column name: "+ selectedColumnName);
+                    //DetailHistory detailHistory =new DetailHistory("Detail History", selectedDate, selectedColumnName, comp);
                 }
             }
         });
