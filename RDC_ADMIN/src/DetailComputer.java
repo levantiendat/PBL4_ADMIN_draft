@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DetailComputer extends JFrame implements ActionListener {
-    private JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7;
+    private JLabel lb1,lb2,lb3,lb4,lb5,lb6;
     private JButton btnRemote, btnHistory;
     private JPanel pn;
     private String comp ="";
@@ -79,7 +79,7 @@ public class DetailComputer extends JFrame implements ActionListener {
         lb4.setBounds(50,180,400,30);
         lb5.setBounds(50,250,400,30);
         lb6.setBounds(50,280,400,30);
-        lb7.setBounds(50,310,400,30);
+
 
         btnRemote.setBounds(550,500,200,60);
         btnHistory.setBounds(770,500,200,60);
@@ -95,7 +95,7 @@ public class DetailComputer extends JFrame implements ActionListener {
         pn.add(lb4);
         pn.add(lb5);
         pn.add(lb6);
-        pn.add(lb7);
+
         pn.add(btnRemote);
         pn.add(btnHistory);
 
