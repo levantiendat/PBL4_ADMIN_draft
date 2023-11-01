@@ -147,7 +147,7 @@ public class DetailHistory extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btnBack){
-            new AppHistory("Detail computer", comp, compstate);
+            new AppHistory("App history", comp, compstate);
             dispose();
         }
     }
