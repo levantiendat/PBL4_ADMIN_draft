@@ -42,12 +42,6 @@ public class DetailComputer extends JFrame implements ActionListener {
         computer.setCompress(client.readCompressMes());
         GUI();
     }
-    public BufferedImage resizePicture(String pic) throws Exception{
-        byte[] imageBytes = pic.getBytes();
-        ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
-        BufferedImage originalImage = ImageIO.read(bis);
-        return originalImage;
-    }
     public void GUI() throws Exception{
         setDefaultCloseOperation(3);
         setLocationRelativeTo(null);
@@ -90,16 +84,33 @@ public class DetailComputer extends JFrame implements ActionListener {
         btnBack.setBackground(Color.white);
         btnBack.setForeground(Color.black);
 
-        BufferedImage image = resizePicture(computer.getCompress());
-        ImageIcon imageIcon = new ImageIcon(image);
-        lb6 = new JLabel(imageIcon);
+
+        byte[] imageBytes = computer.getCompress().getBytes();
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
+        BufferedImage originalImage = ImageIO.read(bis);
+        if (originalImage != null) {
+            int newWidth = 400;
+            int newHeight = 300;
+            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, originalImage.getType());
+
+            java.awt.Image tmp = originalImage.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH);
+            Graphics2D g2d = resizedImage.createGraphics();
+            g2d.drawImage(tmp, 0, 0, null);
+            g2d.dispose();
+
+            ImageIcon imageIcon = new ImageIcon(resizedImage);
+            lb6 = new JLabel(imageIcon);
+            lb6.setBounds(550,150,400,300);
+            pn.add(lb6);
+        }
+
 
         lb1.setBounds(50,50,400, 50);
         lb2.setBounds(50, 120, 400, 30);
         lb3.setBounds(50,150,400,30);
         lb4.setBounds(50,180,400,30);
         lb5.setBounds(50,250,400,30);
-        lb6.setBounds(550,150,400,300);
+
 
         btnBack.setBounds(230,500,300,60);
         btnRemote.setBounds(550,500,200,60);
@@ -116,7 +127,7 @@ public class DetailComputer extends JFrame implements ActionListener {
         pn.add(lb3);
         pn.add(lb4);
         pn.add(lb5);
-        pn.add(lb6);
+
         pn.add(btnBack);
         pn.add(btnRemote);
         pn.add(btnHistory);
