@@ -46,10 +46,7 @@ public class DetailComputer extends JFrame implements ActionListener {
         byte[] imageBytes = pic.getBytes();
         ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
         BufferedImage originalImage = ImageIO.read(bis);
-        int targetWidth = 400;
-        int targetHeight = 300;
-        BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
-        return resizedImage;
+        return originalImage;
     }
     public void GUI() throws Exception{
         setDefaultCloseOperation(3);
