@@ -94,11 +94,11 @@ public class ClientAdmin {
 //        writeMes("/CompInfo");
 //        writeMes("/Read");
 //        writeMes("employee1");
-//        String t1 = readMes();
-//        String t2 = readMes();
-//        String t3 = readMes();
-//        String t4 = readMes();
-//        String t5 = readCompressMes();
+//        String CompID = readMes();
+//        String EmployeeID = readMes();
+//        String EmployeeName = readMes();
+//        String Mail = readMes();
+//        String compress = readCompressMes();
 //        System.out.println(t5);
 
         new RemoteControlView("Remote control");
