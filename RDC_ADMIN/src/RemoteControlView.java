@@ -32,7 +32,7 @@ public class RemoteControlView extends JFrame implements ActionListener {
                         while(true){
                             GetData();
                             GUI2();
-                            Thread.sleep(2000);
+                            Thread.sleep(5000);
                         }
                     } catch(Exception p){
                         p.printStackTrace();
@@ -125,7 +125,7 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
         add(pn);
 
-        show();
+        setVisible(true);
 
 
     }
@@ -150,6 +150,7 @@ public class RemoteControlView extends JFrame implements ActionListener {
             btnList2.get(i).addActionListener(this);
             pn.add(btnList2.get(i));
         }
+        setVisible(true);
     }
 
     public void windowClosing(WindowEvent we) {
