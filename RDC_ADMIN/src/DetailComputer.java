@@ -40,6 +40,7 @@ public class DetailComputer extends JFrame implements ActionListener {
         computer.setEmployeeName(client.readMes());
         computer.setMail(client.readMes());
         computer.setCompress(client.readCompressMes());
+        System.out.println(computer.getCompress());
         GUI();
     }
     public void GUI() throws Exception{
@@ -101,6 +102,7 @@ public class DetailComputer extends JFrame implements ActionListener {
             ImageIcon imageIcon = new ImageIcon(resizedImage);
             lb6 = new JLabel(imageIcon);
             lb6.setBounds(550,150,400,300);
+
             pn.add(lb6);
         }
 
