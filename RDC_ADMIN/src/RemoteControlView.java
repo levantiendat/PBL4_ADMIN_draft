@@ -139,12 +139,12 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
     }
     public void GUI2() {
-        if(isPanelInContainer(pnList1)){
-            remove(pnList1);
-        }
-        if(isPanelInContainer(pnList2)){
-            remove(pnList2);
-        }
+//        if(isPanelInContainer(pnList1)){
+//            remove(pnList1);
+//        }
+//        if(isPanelInContainer(pnList2)){
+//            remove(pnList2);
+//        }
 
         btnList1 = new ArrayList<>(10);
         btnList2 = new ArrayList<>(10);
@@ -176,8 +176,8 @@ public class RemoteControlView extends JFrame implements ActionListener {
         }
         add(pnList1);
         add(pnList2);
-//        revalidate();
-//        repaint();
+        revalidate();
+        repaint();
         setVisible(true);
     }
     private boolean isPanelInContainer(JPanel panel) {
