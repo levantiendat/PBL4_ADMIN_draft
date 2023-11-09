@@ -25,22 +25,24 @@ public class RemoteControlView extends JFrame implements ActionListener {
             client.Init();
             client.Connect();
             GUI();
-            Thread dataThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try{
-                        while(true){
-                            GetData();
-                            GUI2();
-                            Thread.sleep(5000);
-                        }
-                    } catch(Exception p){
-                        p.printStackTrace();
-                    }
-
-                }
-            });
-            dataThread.start();
+            GetData();
+            GUI2();
+//            Thread dataThread = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try{
+//                        while(true){
+//                            GetData();
+//                            GUI2();
+//                            Thread.sleep(5000);
+//                        }
+//                    } catch(Exception p){
+//                        p.printStackTrace();
+//                    }
+//
+//                }
+//            });
+//            dataThread.start();
 
 
         } catch (Exception e) {
