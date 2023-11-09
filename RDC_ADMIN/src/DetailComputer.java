@@ -34,7 +34,7 @@ public class DetailComputer extends JFrame implements ActionListener {
     public void GetData() throws Exception {
         client.writeMes("/CompInfo");
         client.writeMes("/Read");
-        client.writeMes("employee1");
+        client.writeMes(comp);
         computer.setCompID(client.readMes());
         computer.setEmployeeID(client.readMes());
         computer.setEmployeeName(client.readMes());
