@@ -143,13 +143,13 @@ public class RemoteControlView extends JFrame implements ActionListener {
             for(int i = 0;i < btnList1.size();i++){
                 remove(btnList1.get(i));
             }
-            //remove(pnList1);
+            remove(pnList1);
         }
         if(isPanelInContainer(pnList2)){
             for(int i = 0;i < btnList1.size();i++){
                 remove(btnList2.get(i));
             }
-            //remove(pnList2);
+            remove(pnList2);
         }
 
         btnList1 = new ArrayList<>(10);
