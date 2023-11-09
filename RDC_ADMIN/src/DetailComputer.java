@@ -114,29 +114,14 @@ public class DetailComputer extends JFrame implements ActionListener {
         pn.add(btnRemote);
         pn.add(btnHistory);
 
-        byte[] imageBytes = AES.decode(computer.getCompress());
-        ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
-        BufferedImage originalImage = ImageIO.read(bis);
-        if (originalImage != null) {
-            int newWidth = 400;
-            int newHeight = 300;
-            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, originalImage.getType());
-
-            java.awt.Image tmp = originalImage.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH);
-            Graphics2D g2d = resizedImage.createGraphics();
-            g2d.drawImage(tmp, 0, 0, null);
-            g2d.dispose();
-
-            ImageIcon imageIcon = new ImageIcon(resizedImage);
-            lb6 = new JLabel(imageIcon);
-            lb6.setBounds(550,150,400,300);
-
-            pn.add(lb6);
-        }
-
-
-
-
+        byte[] decodedBytes = AES.decode(computer.getCompress());
+        ImageIcon imageIcon = new ImageIcon(decodedBytes);
+        Image image = imageIcon.getImage();
+        Image resizedImage = image.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+        ImageIcon resizedImageIcon = new ImageIcon(resizedImage);
+        lb6 = new JLabel(resizedImageIcon);
+        lb6.setBounds(550,150,400,300);
+        pn.add(lb6);
         add(pn);
         show();
 
