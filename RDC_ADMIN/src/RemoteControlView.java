@@ -24,14 +24,14 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
             client.Init();
             client.Connect();
+            GUI();
             Thread dataThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try{
                         while(true){
-                            dispose();
                             GetData();
-                            GUI();
+                            GUI2();
                             Thread.sleep(2000);
                         }
                     } catch(Exception p){
@@ -108,15 +108,32 @@ public class RemoteControlView extends JFrame implements ActionListener {
         lb3.setFont(new Font("Arial",Font.PLAIN,16));
 
 
-        btnList1=new ArrayList<JButton>(10);
-        btnList2=new ArrayList<JButton>(10);
+
         pn=new JPanel(null);
         pn.setSize(1000,600);
         pn.setBounds(0,0,1000,600);
         pn.setBackground(Color.BLACK);
+
+
+        lb1.setBounds(100,50,400,50);
+        lb2.setBounds(100,150,400,50);
+        lb3.setBounds(100,350,400,50);
+
+        pn.add(lb1);
+        pn.add(lb2);
+        pn.add(lb3);
+
+        add(pn);
+
+        show();
+
+
+    }
+    public void GUI2(){
+        btnList1=new ArrayList<JButton>(10);
+        btnList2=new ArrayList<JButton>(10);
         for(int i=0;i<onlineComps.size();i++){
             btnList1.add(new JButton(onlineComps.get(i)));
-
         }
         for(int i = 0;i<offlineComps.size();i++){
             btnList2.add(new JButton(offlineComps.get(i)));
@@ -133,20 +150,6 @@ public class RemoteControlView extends JFrame implements ActionListener {
             btnList2.get(i).addActionListener(this);
             pn.add(btnList2.get(i));
         }
-
-        lb1.setBounds(100,50,400,50);
-        lb2.setBounds(100,150,400,50);
-        lb3.setBounds(100,350,400,50);
-
-        pn.add(lb1);
-        pn.add(lb2);
-        pn.add(lb3);
-
-        add(pn);
-
-        show();
-
-
     }
 
     public void windowClosing(WindowEvent we) {
