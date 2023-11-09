@@ -85,6 +85,11 @@ public class DetailComputer extends JFrame implements ActionListener {
         btnBack.setBackground(Color.white);
         btnBack.setForeground(Color.black);
 
+        pn=new JPanel(null);
+        pn.setSize(1000,600);
+        pn.setBounds(0,0,1000,600);
+        pn.setBackground(Color.BLACK);
+
         byte[] imageBytes = AES.decode(computer.getCompress());
         ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
         BufferedImage originalImage = ImageIO.read(bis);
@@ -119,10 +124,7 @@ public class DetailComputer extends JFrame implements ActionListener {
         btnBack.addActionListener(this);
         btnRemote.addActionListener(this);
         btnHistory.addActionListener(this);
-        pn=new JPanel(null);
-        pn.setSize(1000,600);
-        pn.setBounds(0,0,1000,600);
-        pn.setBackground(Color.BLACK);
+
         pn.add(lb1);
         pn.add(lb2);
         pn.add(lb3);
