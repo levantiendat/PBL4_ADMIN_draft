@@ -85,8 +85,7 @@ public class DetailComputer extends JFrame implements ActionListener {
         btnBack.setBackground(Color.white);
         btnBack.setForeground(Color.black);
 
-
-        byte[] imageBytes = computer.getCompress().getBytes();
+        byte[] imageBytes = AES.decode(computer.getCompress());
         ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
         BufferedImage originalImage = ImageIO.read(bis);
         if (originalImage != null) {
