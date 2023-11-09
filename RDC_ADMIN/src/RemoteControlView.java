@@ -34,7 +34,7 @@ public class RemoteControlView extends JFrame implements ActionListener {
                             Thread.sleep(2000);
                         }
                     } catch(Exception p){
-
+                        p.printStackTrace();
                     }
 
                 }
