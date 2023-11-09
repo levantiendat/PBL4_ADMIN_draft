@@ -114,7 +114,7 @@ public class DetailComputer extends JFrame implements ActionListener {
         pn.add(btnRemote);
         pn.add(btnHistory);
 
-        if(computer.getCompress().length()>0){
+        if(!computer.getCompress().equals("")){
             byte[] decodedBytes = AES.decode(computer.getCompress());
             ImageIcon imageIcon = new ImageIcon(decodedBytes);
             Image image = imageIcon.getImage();
