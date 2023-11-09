@@ -15,8 +15,10 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
     private List<String> onlineComps;
     private List<String> offlineComps;
+    private Thread dataThread;
 
     private ClientAdmin client = new ClientAdmin();
+    private Boolean isRunning = true;
 
     public RemoteControlView(String s)  {
         super(s);
@@ -27,11 +29,13 @@ public class RemoteControlView extends JFrame implements ActionListener {
             GUI();
 //            GetData();
 //            GUI2();
-            Thread dataThread = new Thread(new Runnable() {
+            dataThread = new Thread(new Runnable() {
+
                 @Override
                 public void run() {
                     try{
-                        while(true){
+
+                        while(isRunning){
                             GetData();
                             GUI2();
                             Thread.sleep(5000);
@@ -40,6 +44,9 @@ public class RemoteControlView extends JFrame implements ActionListener {
                         p.printStackTrace();
                     }
 
+                }
+                public void isStop(){
+                    isRunning = false;
                 }
             });
             dataThread.start();
@@ -179,12 +186,14 @@ public class RemoteControlView extends JFrame implements ActionListener {
             if(e.getSource()==btnList1.get(i)){
                 new DetailComputer("Detail Computer", btnList1.get(i).getText(),"ONLINE");
                 dispose();
+                isRunning = false;
             }
         }
         for(int i = 0;i<offlineComps.size();i++){
             if(e.getSource()==btnList2.get(i)){
                 new DetailComputer("Detail Computer", btnList2.get(i).getText(),"OFFLINE");
                 dispose();
+                isRunning = false;
             }
         }
 
