@@ -13,8 +13,8 @@ public class RemoteControlView extends JFrame implements ActionListener {
     private ArrayList<JButton> btnList1, btnList2;
 
 
-    private List<String> onlineComps = new ArrayList<>();
-    private List<String> offlineComps = new ArrayList<>();
+    private List<String> onlineComps;
+    private List<String> offlineComps;
 
     private ClientAdmin client = new ClientAdmin();
 
@@ -53,6 +53,7 @@ public class RemoteControlView extends JFrame implements ActionListener {
     }
     public void GetData(){
         try{
+
             String option = "/OnlineList";
             client.writeMes(option);
             int n = Integer.parseInt(client.readMes());
@@ -62,7 +63,7 @@ public class RemoteControlView extends JFrame implements ActionListener {
                 String onlineComp = client.readMes();
                 onlineComps.add(onlineComp);
             }
-
+            offlineComps = new ArrayList<>();
             String option1 = "/AllCompID";
             client.writeMes(option1);
             int n1 = Integer.parseInt(client.readMes());
