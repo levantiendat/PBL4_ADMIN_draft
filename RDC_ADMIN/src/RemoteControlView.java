@@ -30,7 +30,6 @@ public class RemoteControlView extends JFrame implements ActionListener {
                     try{
                         while(true){
                             GetData();
-                            dispose();
                             GUI();
                             Thread.sleep(2000);
                         }
