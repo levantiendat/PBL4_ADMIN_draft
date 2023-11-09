@@ -24,8 +24,23 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
             client.Init();
             client.Connect();
-            GetData();
-            GUI();
+            Thread dataThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try{
+                        while(true){
+                            GetData();
+                            dispose();
+                            GUI();
+                            Thread.sleep(2000);
+                        }
+                    } catch(Exception p){
+
+                    }
+
+                }
+            });
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,3 +168,4 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
     }
 }
+

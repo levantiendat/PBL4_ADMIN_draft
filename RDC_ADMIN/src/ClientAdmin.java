@@ -91,15 +91,6 @@ public class ClientAdmin {
 
     public void Interact() throws Exception {
 
-//        writeMes("/CompInfo");
-//        writeMes("/Read");
-//        writeMes("employee1");
-//        String CompID = readMes();
-//        String EmployeeID = readMes();
-//        String EmployeeName = readMes();
-//        String Mail = readMes();
-//        String compress = readCompressMes();
-//        System.out.println(t5);
 
         new RemoteControlView("Remote control");
 
