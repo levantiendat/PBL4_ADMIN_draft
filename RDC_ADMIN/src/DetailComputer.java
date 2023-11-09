@@ -90,27 +90,6 @@ public class DetailComputer extends JFrame implements ActionListener {
         pn.setBounds(0,0,1000,600);
         pn.setBackground(Color.BLACK);
 
-        byte[] imageBytes = AES.decode(computer.getCompress());
-        ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
-        BufferedImage originalImage = ImageIO.read(bis);
-        if (originalImage != null) {
-            int newWidth = 400;
-            int newHeight = 300;
-            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, originalImage.getType());
-
-            java.awt.Image tmp = originalImage.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH);
-            Graphics2D g2d = resizedImage.createGraphics();
-            g2d.drawImage(tmp, 0, 0, null);
-            g2d.dispose();
-
-            ImageIcon imageIcon = new ImageIcon(resizedImage);
-            lb6 = new JLabel(imageIcon);
-            lb6.setBounds(550,150,400,300);
-
-            pn.add(lb6);
-        }
-
-
         lb1.setBounds(50,50,400, 50);
         lb2.setBounds(50, 120, 400, 30);
         lb3.setBounds(50,150,400,30);
@@ -134,6 +113,29 @@ public class DetailComputer extends JFrame implements ActionListener {
         pn.add(btnBack);
         pn.add(btnRemote);
         pn.add(btnHistory);
+
+        byte[] imageBytes = AES.decode(computer.getCompress());
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
+        BufferedImage originalImage = ImageIO.read(bis);
+        if (originalImage != null) {
+            int newWidth = 400;
+            int newHeight = 300;
+            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, originalImage.getType());
+
+            java.awt.Image tmp = originalImage.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH);
+            Graphics2D g2d = resizedImage.createGraphics();
+            g2d.drawImage(tmp, 0, 0, null);
+            g2d.dispose();
+
+            ImageIcon imageIcon = new ImageIcon(resizedImage);
+            lb6 = new JLabel(imageIcon);
+            lb6.setBounds(550,150,400,300);
+
+            pn.add(lb6);
+        }
+
+
+
 
         add(pn);
         show();
