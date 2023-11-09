@@ -132,6 +132,8 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
     }
     public void GUI2() {
+        final RemoteControlView self = this; // Tạo một biến final để tham chiếu đến YourClass
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -139,33 +141,32 @@ public class RemoteControlView extends JFrame implements ActionListener {
                 btnList2 = new ArrayList<>(10);
 
                 for (int i = 0; i < onlineComps.size(); i++) {
-                    btnList1.add(new JButton(onlineComps.get(i)));
-                }
-
-                for (int i = 0; i < offlineComps.size(); i++) {
-                    btnList2.add(new JButton(offlineComps.get(i)));
-                }
-
-                for (int i = 0; i < onlineComps.size(); i++) {
-                    JButton btn = btnList1.get(i);
+                    JButton btn = new JButton(onlineComps.get(i));
+                    btnList1.add(btn);
                     btn.setBounds(50 + 100 * i, 230, 90, 70);
                     btn.setBackground(Color.GREEN);
-                    btn.addActionListener(RemoteControlView.this);
+                    btn.addActionListener(self);
                     pn.add(btn);
                 }
 
                 for (int i = 0; i < offlineComps.size(); i++) {
-                    JButton btn = btnList2.get(i);
+                    JButton btn = new JButton(offlineComps.get(i));
+                    btnList2.add(btn);
                     btn.setBounds(50 + 100 * i, 430, 90, 70);
                     btn.setBackground(Color.YELLOW);
-                    btn.addActionListener(RemoteControlView.this);
+                    btn.addActionListener(self);
                     pn.add(btn);
                 }
+
+                // Thực hiện cập nhật giao diện
                 pn.revalidate();
                 pn.repaint();
             }
         });
+
+        setVisible(true);
     }
+
 
 
     public void windowClosing(WindowEvent we) {
