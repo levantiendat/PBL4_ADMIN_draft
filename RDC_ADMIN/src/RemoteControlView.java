@@ -151,10 +151,11 @@ public class RemoteControlView extends JFrame implements ActionListener {
         pnList1 = new JPanel(null);
         pnList1.setSize(900,70);
         pnList1.setBounds(50, 230, 900, 70);
-
+        pnList1.setBackground(Color.BLUE);
         pnList2 = new JPanel(null);
         pnList2.setSize(900,70);
         pnList2.setBounds(50, 430, 900, 70);
+        pnList2.setBackground(Color.GREEN);
 
         for (int i = 0; i < onlineComps.size(); i++) {
             JButton btn = new JButton(onlineComps.get(i));
