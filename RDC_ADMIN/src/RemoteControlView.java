@@ -176,8 +176,8 @@ public class RemoteControlView extends JFrame implements ActionListener {
         }
         add(pnList1);
         add(pnList2);
-        revalidate();
-        repaint();
+//        revalidate();
+//        repaint();
         setVisible(true);
     }
     private boolean isPanelInContainer(JPanel panel) {
