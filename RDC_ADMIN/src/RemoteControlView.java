@@ -139,12 +139,18 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
     }
     public void GUI2() {
-//        if(isPanelInContainer(pnList1)){
-//            remove(pnList1);
-//        }
-//        if(isPanelInContainer(pnList2)){
-//            remove(pnList2);
-//        }
+        if(isPanelInContainer(pnList1)){
+            for(int i = 0;i < btnList1.size();i++){
+                remove(btnList1.get(i));
+            }
+            //remove(pnList1);
+        }
+        if(isPanelInContainer(pnList2)){
+            for(int i = 0;i < btnList1.size();i++){
+                remove(btnList2.get(i));
+            }
+            //remove(pnList2);
+        }
 
         btnList1 = new ArrayList<>(10);
         btnList2 = new ArrayList<>(10);
@@ -163,7 +169,7 @@ public class RemoteControlView extends JFrame implements ActionListener {
             btn.setBounds(100 * i, 0, 90, 70);
             btn.setBackground(Color.GREEN);
             btn.addActionListener(this);
-            pnList1.add(btn);
+            pnList1.add(btnList1.get(i));
         }
 
         for (int i = 0; i < offlineComps.size(); i++) {
@@ -172,7 +178,7 @@ public class RemoteControlView extends JFrame implements ActionListener {
             btn.setBounds(100 * i, 0, 90, 70);
             btn.setBackground(Color.YELLOW);
             btn.addActionListener(this);
-            pnList2.add(btn);
+            pnList2.add(btnList2.get(i));
         }
         add(pnList1);
         add(pnList2);
