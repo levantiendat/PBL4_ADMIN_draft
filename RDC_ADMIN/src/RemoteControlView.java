@@ -25,24 +25,24 @@ public class RemoteControlView extends JFrame implements ActionListener {
             client.Init();
             client.Connect();
             GUI();
-            GetData();
-            GUI2();
-//            Thread dataThread = new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try{
-//                        while(true){
-//                            GetData();
-//                            GUI2();
-//                            Thread.sleep(5000);
-//                        }
-//                    } catch(Exception p){
-//                        p.printStackTrace();
-//                    }
-//
-//                }
-//            });
-//            dataThread.start();
+//            GetData();
+//            GUI2();
+            Thread dataThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try{
+                        while(true){
+                            GetData();
+                            GUI2();
+                            Thread.sleep(5000);
+                        }
+                    } catch(Exception p){
+                        p.printStackTrace();
+                    }
+
+                }
+            });
+            dataThread.start();
 
 
         } catch (Exception e) {
@@ -131,29 +131,42 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
 
     }
-    public void GUI2(){
-        btnList1=new ArrayList<JButton>(10);
-        btnList2=new ArrayList<JButton>(10);
-        for(int i=0;i<onlineComps.size();i++){
-            btnList1.add(new JButton(onlineComps.get(i)));
-        }
-        for(int i = 0;i<offlineComps.size();i++){
-            btnList2.add(new JButton(offlineComps.get(i)));
-        }
-        for(int i=0;i<onlineComps.size();i++){
-            btnList1.get(i).setBounds(50+100*i,230,90,70);
-            btnList1.get(i).setBackground(Color.GREEN);
-            btnList1.get(i).addActionListener(this);
-            pn.add(btnList1.get(i));
-        }
-        for(int i = 0;i<offlineComps.size();i++){
-            btnList2.get(i).setBounds(50+100*i,430,90,70);
-            btnList2.get(i).setBackground(Color.YELLOW);
-            btnList2.get(i).addActionListener(this);
-            pn.add(btnList2.get(i));
-        }
-        setVisible(true);
+    public void GUI2() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                btnList1 = new ArrayList<>(10);
+                btnList2 = new ArrayList<>(10);
+
+                for (int i = 0; i < onlineComps.size(); i++) {
+                    btnList1.add(new JButton(onlineComps.get(i)));
+                }
+
+                for (int i = 0; i < offlineComps.size(); i++) {
+                    btnList2.add(new JButton(offlineComps.get(i)));
+                }
+
+                for (int i = 0; i < onlineComps.size(); i++) {
+                    JButton btn = btnList1.get(i);
+                    btn.setBounds(50 + 100 * i, 230, 90, 70);
+                    btn.setBackground(Color.GREEN);
+                    btn.addActionListener(RemoteControlView.this);
+                    pn.add(btn);
+                }
+
+                for (int i = 0; i < offlineComps.size(); i++) {
+                    JButton btn = btnList2.get(i);
+                    btn.setBounds(50 + 100 * i, 430, 90, 70);
+                    btn.setBackground(Color.YELLOW);
+                    btn.addActionListener(RemoteControlView.this);
+                    pn.add(btn);
+                }
+                pn.revalidate();
+                pn.repaint();
+            }
+        });
     }
+
 
     public void windowClosing(WindowEvent we) {
         dispose();
