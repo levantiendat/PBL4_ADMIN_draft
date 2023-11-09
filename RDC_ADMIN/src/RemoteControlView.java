@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RemoteControlView extends JFrame implements ActionListener {
     private JLabel lb1,lb2,lb3;
-    private JPanel pn;
+    private JPanel pn,pnList1,pnList2;
     private ArrayList<JButton> btnList1, btnList2;
 
 
@@ -139,41 +139,55 @@ public class RemoteControlView extends JFrame implements ActionListener {
 
     }
     public void GUI2() {
-        final RemoteControlView self = this; // Tạo một biến final để tham chiếu đến YourClass
+        if(isPanelInContainer(pnList1)){
+            remove(pnList1);
+        }
+        if(isPanelInContainer(pnList2)){
+            remove(pnList2);
+        }
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                btnList1 = new ArrayList<>(10);
-                btnList2 = new ArrayList<>(10);
+        btnList1 = new ArrayList<>(10);
+        btnList2 = new ArrayList<>(10);
+        pnList1 = new JPanel(null);
+        pnList1.setSize(900,70);
+        pnList1.setBounds(50, 230, 900, 70);
 
-                for (int i = 0; i < onlineComps.size(); i++) {
-                    JButton btn = new JButton(onlineComps.get(i));
-                    btnList1.add(btn);
-                    btn.setBounds(50 + 100 * i, 230, 90, 70);
-                    btn.setBackground(Color.GREEN);
-                    btn.addActionListener(self);
-                    pn.add(btn);
-                }
+        pnList2 = new JPanel(null);
+        pnList2.setSize(900,70);
+        pnList2.setBounds(50, 430, 900, 70);
 
-                for (int i = 0; i < offlineComps.size(); i++) {
-                    JButton btn = new JButton(offlineComps.get(i));
-                    btnList2.add(btn);
-                    btn.setBounds(50 + 100 * i, 430, 90, 70);
-                    btn.setBackground(Color.YELLOW);
-                    btn.addActionListener(self);
-                    pn.add(btn);
-                }
+        for (int i = 0; i < onlineComps.size(); i++) {
+            JButton btn = new JButton(onlineComps.get(i));
+            btnList1.add(btn);
+            btn.setBounds(100 * i, 0, 90, 70);
+            btn.setBackground(Color.GREEN);
+            btn.addActionListener(this);
+            pnList1.add(btn);
+        }
 
-                // Thực hiện cập nhật giao diện
-                pn.revalidate();
-                pn.repaint();
-            }
-        });
-
+        for (int i = 0; i < offlineComps.size(); i++) {
+            JButton btn = new JButton(offlineComps.get(i));
+            btnList2.add(btn);
+            btn.setBounds(100 * i, 0, 90, 70);
+            btn.setBackground(Color.YELLOW);
+            btn.addActionListener(this);
+            pnList2.add(btn);
+        }
+        add(pnList1);
+        add(pnList2);
+        revalidate();
+        repaint();
         setVisible(true);
     }
-
+    private boolean isPanelInContainer(JPanel panel) {
+        Component[] components = getContentPane().getComponents();
+        for (Component component : components) {
+            if (component.equals(panel)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     public void windowClosing(WindowEvent we) {
