@@ -44,7 +44,7 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(null);
-        setSize(1000,700);
+        setSize(1500,1000);
 
         lb1=new JLabel("COMPUTER REMOTE CONTROLLER");
         lb1.setForeground(Color.WHITE);
@@ -57,14 +57,14 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
         btnBack.setForeground(Color.black);
 
         pn=new JPanel(null);
-        pn.setSize(1000,700);
-        pn.setBounds(0,0,1000,700);
+        pn.setSize(1500,1000);
+        pn.setBounds(0,0,1500,1000);
         pn.setBackground(Color.BLACK);
 
         Thread remoteControlHandler = new Thread(new RemoteControlHandler(key, targetIP, this));
         remoteControlHandler.start();
-        lb1.setBounds(50,30,400, 50);
-        btnBack.setBounds(750,620,200,60);
+        lb1.setBounds(50,50,400, 50);
+        btnBack.setBounds(1200,800,200,60);
         btnBack.addActionListener(this);
         pn.add(lb1);
         pn.add(btnBack);
@@ -90,7 +90,7 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
 
         if (screen != null){
             resizeScreen = resizeImage(screen, 800, 500);
-            g.drawImage(resizeScreen, 100, 100, resizeScreen.getWidth(), resizeScreen.getHeight(), null);
+            g.drawImage(resizeScreen, 100, 200, resizeScreen.getWidth(), resizeScreen.getHeight(), null);
         }
     }
     public void windowClosing(WindowEvent we) {
