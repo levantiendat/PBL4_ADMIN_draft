@@ -63,8 +63,8 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
 
         Thread remoteControlHandler = new Thread(new RemoteControlHandler(key, targetIP, this));
         remoteControlHandler.start();
-        lb1.setBounds(50,50,400, 50);
-        btnBack.setBounds(770,630,200,60);
+        lb1.setBounds(50,30,400, 50);
+        btnBack.setBounds(750,620,200,60);
         btnBack.addActionListener(this);
         pn.add(lb1);
         pn.add(btnBack);
@@ -90,7 +90,7 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
 
         if (screen != null){
             resizeScreen = resizeImage(screen, 800, 500);
-            g.drawImage(resizeScreen, 100, 110, resizeScreen.getWidth(), resizeScreen.getHeight(), null);
+            g.drawImage(resizeScreen, 100, 100, resizeScreen.getWidth(), resizeScreen.getHeight(), null);
         }
     }
     public void windowClosing(WindowEvent we) {
