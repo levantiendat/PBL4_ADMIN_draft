@@ -13,12 +13,12 @@ public class RemoteControlHandler implements Runnable {
     private volatile TreeMap<Long, ImageData> frameQueue;
     private DatagramSocket adminSocket;
     private InetAddress inetAddress;
-    private TestRemoteControl testRemoteControl;
+    private RemoteControlDetail mRemoteControl;
 
-    public RemoteControlHandler(String key, String ip, TestRemoteControl testRemoteControl) throws Exception {
+    public RemoteControlHandler(String key, String ip, RemoteControlDetail mRemoteControl) throws Exception {
         this.aes = new AES(key);
         this.targetIP = ip;
-        this.testRemoteControl = testRemoteControl;
+        this.mRemoteControl = mRemoteControl;
     }
 
     @Override
@@ -79,8 +79,8 @@ public class RemoteControlHandler implements Runnable {
                     long frameID = frameQueue.firstKey();
                     if (!frameQueue.get(frameID).isCompleted()) continue;
 
-                    testRemoteControl.screen = frameQueue.get(frameID).getImage(aes);
-                    testRemoteControl.repaint();
+                    mRemoteControl.screen = frameQueue.get(frameID).getImage(aes);
+                    mRemoteControl.repaint();
                     frameQueue.remove(frameID);
 
                 } catch (Exception e) {
