@@ -14,7 +14,7 @@ public class TestRemoteControl extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(1500, 1000);
+        setSize(1000, 600);
         setResizable(false);
         setVisible(true);
 
