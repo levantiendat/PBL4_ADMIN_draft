@@ -14,7 +14,7 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
     private ClientAdmin client = new ClientAdmin();
     private String key = "";
     private String targetIP = "";
-    public volatile BufferedImage screen, resizeScreen;
+    public ScreenDisplayer screen;
 
 
     public RemoteControlDetail(String s, String name, String state)  {
@@ -61,10 +61,11 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
         pn.setBounds(0,0,1500,1000);
         pn.setBackground(Color.BLACK);
 
+        screen = new ScreenDisplayer();
         Thread remoteControlHandler = new Thread(new RemoteControlHandler(key, targetIP, this));
         remoteControlHandler.start();
         lb1.setBounds(50,50,400, 50);
-        btnBack.setBounds(1200,800,200,60);
+        btnBack.setBounds(1250,900,200,60);
         btnBack.addActionListener(this);
         pn.add(lb1);
         pn.add(btnBack);
@@ -72,6 +73,31 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
         add(pn);
         show();
 
+
+    }
+    public class ScreenDisplayer extends JPanel {
+        private BufferedImage screenFrame;
+
+        public ScreenDisplayer() {
+            setSize(1000, 625);
+            setBounds(100,120,1200,750);
+        }
+
+        @Override
+        public void paint(Graphics g) {
+
+            if (screenFrame != null){
+                screenFrame = resizeImage(screenFrame, 1000, 625);
+                g.drawImage(screenFrame, 0, 0, null);
+            }
+
+
+        }
+
+        public void display(BufferedImage screenFrame) {
+            this.screenFrame = screenFrame;
+            repaint();
+        }
 
     }
     private static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
@@ -84,15 +110,7 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
 
         return resizedImage;
     }
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
 
-        if (screen != null){
-            resizeScreen = resizeImage(screen, 800, 500);
-            g.drawImage(resizeScreen, 100, 200, resizeScreen.getWidth(), resizeScreen.getHeight(), null);
-        }
-    }
     public void windowClosing(WindowEvent we) {
         dispose();
         System.exit(0);
