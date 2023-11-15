@@ -69,6 +69,7 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
         btnBack.addActionListener(this);
         pn.add(lb1);
         pn.add(btnBack);
+        pn.add(screen);
 
         add(pn);
         show();
