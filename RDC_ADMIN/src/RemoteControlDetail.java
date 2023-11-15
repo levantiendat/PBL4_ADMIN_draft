@@ -33,7 +33,7 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
     }
     public void GetData() throws Exception {
         client.writeMes("/RemoteControl");
-        client.writeMes("employee1");
+        client.writeMes(comp);
         key = client.readMes();
         targetIP = client.readMes();
 
