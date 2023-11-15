@@ -80,7 +80,7 @@ public class RemoteControlDetail extends JFrame implements ActionListener {
 
         public ScreenDisplayer() {
             setSize(1000, 625);
-            setBounds(100,120,1200,750);
+            setBounds(100,120,1000,625);
         }
 
         @Override
